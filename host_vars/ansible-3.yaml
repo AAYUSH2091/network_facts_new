@@ -1,0 +1,196 @@
+- address_family:
+  - afi: ipv4
+    neighbor:
+    - activate: true
+      peer: 1.1.1.1
+    network:
+    - address: 1.1.1.0/24
+    - address: 1.5.1.0/24
+      route_map: MAP01
+    redistribute:
+    - ospf_route: external
+      protocol: ospfv3
+  as_number: '100'
+- aggregate_address:
+  - address: 1.2.1.0/24
+    as_set: true
+    match_map: match01
+  - address: 5.2.1.0/24
+    advertise_only: true
+    attribute_map: attrmatch01
+  as_number: '100'
+  bgp_params:
+    additional_paths: send
+    convergence:
+      slow_peer: true
+      time: 6
+  distance:
+    external: 50
+    internal: 50
+    local: 50
+  maximum_paths:
+    max_equal_cost_paths: 55
+  neighbor:
+  - link_bandwidth:
+      set: true
+      update_delay: 5
+    maximum_received_routes:
+      count: 12000
+    monitoring: true
+    neighbor_address: peer1
+    peer_group: peer1
+    send_community:
+      community_attribute: extended
+      link_bandwidth_attribute: aggregate
+      speed: '600'
+      sub_attribute: link-bandwidth
+  - maximum_received_routes:
+      count: 12000
+    neighbor_address: peer2
+    peer_group: peer2
+  - maximum_received_routes:
+      count: 12000
+    neighbor_address: 1.1.1.1
+  - allowas_in:
+      count: 3
+    default_originate:
+      always: true
+    dont_capability_negotiate: true
+    export_localpref: 4000
+    maximum_received_routes:
+      count: 500
+      warning_limit:
+        limit_percent: 5
+    neighbor_address: 10.1.3.2
+    next_hop_unchanged: true
+  redistribute:
+  - protocol: static
+    route_map: map_static
+  - protocol: attached-host
+- - enabled: true
+    name: Ethernet1
+  - enabled: true
+    name: Ethernet2
+  - enabled: true
+    name: Ethernet3
+  - enabled: true
+    name: Ethernet4
+  - enabled: true
+    name: Ethernet5
+  - enabled: true
+    name: Ethernet6
+  - enabled: true
+    name: Ethernet7
+  - enabled: true
+    name: Ethernet8
+  - enabled: true
+    name: Ethernet9
+  - enabled: true
+    name: Ethernet10
+  - enabled: true
+    name: Ethernet11
+  - enabled: true
+    name: Ethernet12
+  - enabled: true
+    name: Loopback0
+  - description: Management Interface
+    enabled: true
+    name: Management1
+  - enabled: true
+    name: Vlan1
+- - name: Ethernet1
+  - name: Ethernet2
+  - name: Ethernet3
+  - name: Ethernet4
+  - name: Ethernet5
+  - name: Ethernet6
+  - name: Ethernet7
+  - name: Ethernet8
+  - name: Ethernet9
+  - name: Ethernet10
+  - name: Ethernet11
+  - name: Ethernet12
+  - name: Loopback0
+  - name: Management1
+  - name: Vlan1
+- - name: Ethernet1
+  - name: Ethernet2
+  - name: Ethernet3
+  - name: Ethernet4
+  - name: Ethernet5
+  - name: Ethernet6
+  - name: Ethernet7
+  - name: Ethernet8
+  - name: Ethernet9
+  - name: Ethernet10
+  - name: Ethernet11
+  - name: Ethernet12
+  - ipv4:
+    - address: 2.2.2.2/32
+    name: Loopback0
+  - ipv4:
+    - address: dhcp
+    name: Management1
+  - name: Vlan1
+- processes:
+  - adjacency:
+      exchange_start:
+        threshold: 20045623
+    areas:
+    - area_id: 0.0.0.2
+      filter:
+        address: 10.1.1.0/24
+    - area_id: 0.0.0.50
+      range:
+        address: 172.20.0.0/16
+        cost: 34
+    default_information:
+      metric: 100
+      metric_type: 1
+      originate: true
+    distance:
+      intra_area: 85
+    max_lsa:
+      count: 8000
+      ignore_count: 3
+      ignore_time: 6
+      reset_time: 20
+      threshold: 40
+    networks:
+    - area: 0.0.0.0
+      prefix: 10.10.2.0/24
+    - area: 0.0.0.0
+      prefix: 10.10.3.0/24
+    process_id: 1
+    redistribute:
+    - routes: static
+    router_id: 170.21.0.4
+- processes:
+  - address_family:
+    - afi: ipv6
+      fips_restrictions: true
+      graceful_restart:
+        grace_period: 35
+    fips_restrictions: true
+    router_id: 2.2.2.2
+    timers:
+      pacing: 55
+    vrf: vrfmerge
+- build_info:
+    internal_build_id: 2f026fab-f3ea-4171-9e76-42c5c3dedf3e
+    internal_build_version: 4.24.6M-22486697.4246M
+  device_name: eos-switch
+  hardware:
+    mac_address: 5254.00d9.190b
+  memory:
+    free_mb: 1269.54296875
+    total_mb: 1967.21484375
+  system:
+    architecture: i686
+    mac_address: 5254.00d9.190b
+  uptime:
+    days: 0
+    hours: 21
+    minutes: 27
+    weeks: 0
+  version: 4.24.6M
