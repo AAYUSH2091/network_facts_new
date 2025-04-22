@@ -1,0 +1,41 @@
+- bgp_address_family
+- bgp_global
+- interfaces
+- l2_interfaces
+- l3_interfaces
+- ospfv2
+- ospfv3
+- bootflash: 4495360
+  device_name: aayushNXOS
+  hardware:
+    model: Nexus9000 C9300v
+    serial_number: 9GT0HF5KR3M
+  last_reset_reason: Unknown
+  license:
+    count: 1
+    description: LAN license for Nexus 9300-XF
+    enforcement_type: NOT ENFORCED
+    license_type: Generic
+    name: LAN_ENTERPRISE_SERVICES_PKG
+    status: IN USE
+    version: 1.0
+  memory:
+    free_mb: 1521.73046875
+    total_mb: 7945.015625
+    used_mb: 6423.28515625
+  nxos_compile_time: 11/30/2023 12:00:00 [12/14/2023 05:25:50]
+  nxos_image_file: bootflash:///nxos64-cs.10.4.2.F.bin
+  os_type: NX-OS
+  processes:
+    running: 1
+    total: 896
+  processor:
+    memory: 8135696
+    type: Intel(R) Xeon(R) Platinum 8275CL CPU @ 3.00GHz
+  release_type: Feature Release
+  uptime:
+    days: 111
+    hours: 21
+    minutes: 44
+    seconds: 14
+  version: 10.4(2)
