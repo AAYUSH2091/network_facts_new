@@ -1,0 +1,103 @@
+- bgp_address_family:
+    address_family:
+    - advertise_best_external: true
+      afi: ipv4
+      allocate_label:
+        all: true
+      bgp:
+        attribute_download: true
+        scan_time: 20
+      safi: unicast
+    - afi: vpnv4
+      safi: unicast
+    - afi: ipv4
+      dynamic_med: 9
+      redistribute:
+      - metric: 10
+        protocol: connected
+      safi: unicast
+      vrf: vrf1
+    as_number: '65001'
+- bgp_global:
+    as_number: '65001'
+    bgp:
+      router_id: 192.0.1.1
+    neighbors:
+    - neighbor_address: 192.0.2.1
+      remote_as: 65002
+    timers:
+      holdtime: 90
+      keepalive_time: 30
+    vrfs:
+    - rd:
+        auto: true
+      vrf: vrf1
+- interfaces:
+  - enabled: true
+    name: Loopback0
+  - enabled: true
+    name: MgmtEth0/RP0/CPU0/0
+  - enabled: true
+    name: GigabitEthernet0/0/0/0
+  - enabled: true
+    name: GigabitEthernet0/0/0/1
+- l2_interfaces:
+  - name: Loopback0
+  - name: MgmtEth0/RP0/CPU0/0
+  - name: GigabitEthernet0/0/0/0
+  - name: GigabitEthernet0/0/0/1
+- l3_interfaces:
+  - name: Loopback0
+  - ipv4:
+    - address: dhcp
+    name: MgmtEth0/RP0/CPU0/0
+  - ipv4:
+    - address: 10.1.1.1/29
+    name: GigabitEthernet0/0/0/0
+  - ipv4:
+    - address: 10.0.0.1/24
+    name: GigabitEthernet0/0/0/1
+- ospfv2:
+    processes:
+    - process_id: LAB3
+      router_id: 1.1.1.1
+    - process_id: MYOSPF
+- ospfv3:
+    processes:
+    - areas:
+      - area_id: '11'
+        cost: 11
+        default_cost: 5
+      - area_id: '22'
+        default_cost: 6
+      process_id: '10'
+    - authentication:
+        disable: true
+      process_id: '26'
+    - areas:
+      - area_id: '10'
+        hello_interval: 2
+      process_id: '27'
+- build_info:
+    built_by: ingunawa
+    built_host: iox-ucs-067
+    built_on: Mon Jul 25 02:41:45 PDT 2022
+    label: 7.7.1-0
+    location: /opt/cisco/XR/packages/
+    workspace: /auto/srcarchive12/prod/7.7.1/xrv9k/ws
+  device_name: iosxr
+  hardware:
+    model: cisco IOS-XRv 9000
+  license:
+    count: 1
+    export_status: NOT RESTRICTED
+    name: IOS-XRv-9000-vRouter-VM
+    status: EVAL MODE
+    version: 1.0
+  memory:
+    free_mb: 3548M
+    total_mb: 6144M
+  memory_summary:
+    image_size: 4M
+  os_type: IOS XR
+  version: 7.7.1
